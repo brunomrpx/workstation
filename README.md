@@ -9,7 +9,7 @@ Target: Ubuntu / Debian-based.
 - **base** — essential CLI packages via apt
 - **shell** — zsh + starship, `.zshrc`, `.gitconfig`
 - **dev** — mise + Docker
-- **apps** — VSCode, Brave
+- **apps** — VSCode, Brave, GitHub CLI
 
 ## Bootstrap
 
@@ -18,6 +18,12 @@ sudo apt install -y git
 git clone <repo-url> ~/Projects/workstation
 cd ~/Projects/workstation
 ./bootstrap.sh
+```
+
+After the playbook finishes, authenticate GitHub (generates and uploads an SSH key):
+
+```bash
+gh auth login   # GitHub.com → SSH → generate new key
 ```
 
 ## Day-to-day
