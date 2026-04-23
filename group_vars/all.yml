@@ -1,18 +1,11 @@
 git_user_name: "Bruno Mayer"
-git_user_email: "bruno.mayer@stone.com.br"
+git_user_email: "brunomrpx@gmail.com"
 
 apt_packages:
   - build-essential
   - ca-certificates
   - curl
-  - fzf
   - git
   - gnupg
-  - htop
-  - jq
-  - ripgrep
-  - tmux
-  - tree
   - unzip
-  - vim
   - zsh

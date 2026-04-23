@@ -9,3 +9,10 @@
     name: "{{ apt_packages }}"
     state: present
   become: true
+
+- name: Ensure apt keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+  become: true

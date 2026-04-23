@@ -3,27 +3,13 @@ export PATH="$HOME/.local/bin:$PATH"
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt SHARE_HISTORY
-setopt APPEND_HISTORY
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
-[ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
-
 command -v mise >/dev/null && eval "$(mise activate zsh)"
 command -v starship >/dev/null && eval "$(starship init zsh)"
-
-alias ll='ls -la'
-alias la='ls -A'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias g='git'
-alias gs='git status'
-alias gd='git diff'
-alias gl='git log --oneline --graph --decorate'

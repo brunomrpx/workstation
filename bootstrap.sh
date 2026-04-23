@@ -7,6 +7,6 @@ if ! command -v apt-get >/dev/null 2>&1; then
 fi
 
 sudo apt update
-sudo apt install -y ansible git
+sudo apt install -y ansible
 
 ansible-playbook site.yml --ask-become-pass

@@ -1,20 +1,17 @@
 # workstation
 
-Ansible playbook para provisionar uma workstation de desenvolvimento a partir de uma instalação limpa.
+Ansible playbook to provision my dev workstation from a clean install.
 
-## Status
+Target: Ubuntu / Debian-based.
 
-- **Suportado hoje:** Ubuntu / Debian-based
-- **Planejado:** macOS, Fedora (quando houver demanda real)
+## Roles
 
-## O que faz
+- **base** — essential CLI packages via apt
+- **shell** — zsh + starship, `.zshrc`, `.gitconfig`
+- **dev** — mise + Docker
+- **apps** — VSCode, Brave
 
-- **base** — pacotes CLI essenciais via apt (git, tmux, ripgrep, fzf, jq, etc.)
-- **shell** — zsh como default, starship (prompt), `.zshrc` e `.gitconfig`
-- **dev** — mise (runtime version manager) + Docker via repo oficial
-- **apps** — VSCode e Chrome via repo/.deb oficial (sem snap/flatpak)
-
-## Uso em máquina nova
+## Bootstrap
 
 ```bash
 sudo apt install -y git
@@ -23,14 +20,10 @@ cd ~/Projects/workstation
 ./bootstrap.sh
 ```
 
-## Uso no dia-a-dia
+## Day-to-day
 
 ```bash
-ansible-playbook site.yml --check --diff         # preview do que mudaria
-ansible-playbook site.yml --ask-become-pass      # aplica
-ansible-playbook site.yml --tags apps            # roda só uma role
+ansible-playbook site.yml --check --diff      # dry-run
+ansible-playbook site.yml --ask-become-pass   # apply
+ansible-playbook site.yml --tags apps         # single role
 ```
-
-## Estendendo
-
-Cada role é independente. Para adicionar algo novo: ou estenda uma role existente, ou crie uma nova e registre em `site.yml`.

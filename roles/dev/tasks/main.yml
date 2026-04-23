@@ -4,13 +4,6 @@
   args:
     creates: "{{ ansible_env.HOME }}/.local/bin/mise"
 
-- name: Ensure apt keyrings directory exists
-  ansible.builtin.file:
-    path: /etc/apt/keyrings
-    state: directory
-    mode: "0755"
-  become: true
-
 - name: Download Docker GPG key
   ansible.builtin.get_url:
     url: https://download.docker.com/linux/ubuntu/gpg
