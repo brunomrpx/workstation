@@ -1,0 +1,39 @@
+- name: Ensure apt keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+  become: true
+
+- name: Download Microsoft GPG key
+  ansible.builtin.get_url:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    dest: /tmp/microsoft.asc
+    mode: "0644"
+
+- name: Dearmor Microsoft GPG key
+  ansible.builtin.shell: |
+    gpg --dearmor < /tmp/microsoft.asc > /etc/apt/keyrings/packages.microsoft.gpg
+  args:
+    creates: /etc/apt/keyrings/packages.microsoft.gpg
+  become: true
+
+- name: Add VSCode apt repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main"
+    state: present
+    filename: vscode
+  become: true
+
+- name: Install VSCode
+  ansible.builtin.apt:
+    name: code
+    state: present
+    update_cache: true
+  become: true
+
+- name: Install Google Chrome from .deb
+  ansible.builtin.apt:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    state: present
+  become: true

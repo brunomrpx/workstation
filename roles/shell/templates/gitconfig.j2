@@ -1,0 +1,28 @@
+[user]
+    name = {{ git_user_name }}
+    email = {{ git_user_email }}
+
+[core]
+    autocrlf = input
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = true
+
+[push]
+    default = current
+    autoSetupRemote = true
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    d = diff
+    dc = diff --cached
+    l = log --oneline --graph --decorate
+
+[color]
+    ui = auto

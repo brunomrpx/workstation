@@ -1,0 +1,39 @@
+- name: Install starship prompt
+  ansible.builtin.shell: |
+    curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
+  args:
+    creates: /usr/local/bin/starship
+  become: true
+
+- name: Set zsh as default shell
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/zsh
+  become: true
+
+- name: Ensure ~/.config exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config"
+    state: directory
+    mode: "0755"
+
+- name: Deploy .zshrc
+  ansible.builtin.copy:
+    src: zshrc
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    mode: "0644"
+    backup: true
+
+- name: Deploy starship config
+  ansible.builtin.copy:
+    src: starship.toml
+    dest: "{{ ansible_env.HOME }}/.config/starship.toml"
+    mode: "0644"
+    backup: true
+
+- name: Render .gitconfig
+  ansible.builtin.template:
+    src: gitconfig.j2
+    dest: "{{ ansible_env.HOME }}/.gitconfig"
+    mode: "0644"
+    backup: true

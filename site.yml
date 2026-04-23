@@ -1,0 +1,12 @@
+- name: Provision workstation
+  hosts: localhost
+  become: false
+  roles:
+    - role: base
+      tags: [base]
+    - role: shell
+      tags: [shell]
+    - role: dev
+      tags: [dev]
+    - role: apps
+      tags: [apps]
