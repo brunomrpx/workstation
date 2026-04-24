@@ -90,3 +90,8 @@
     dest: /etc/brave/policies/managed/extensions.json
     mode: "0644"
   become: true
+
+- name: Install Claude Code CLI
+  ansible.builtin.shell:
+    cmd: curl -fsSL https://claude.ai/install.sh | bash
+    creates: "{{ ansible_env.HOME }}/.local/bin/claude"
