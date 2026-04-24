@@ -84,6 +84,13 @@
     mode: "0755"
   become: true
 
+- name: Configure Brave search policy
+  ansible.builtin.copy:
+    src: brave_search_policy.json
+    dest: /etc/brave/policies/managed/search.json
+    mode: "0644"
+  become: true
+
 - name: Configure Brave extensions policy
   ansible.builtin.template:
     src: brave_extensions.json.j2
