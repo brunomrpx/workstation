@@ -4,6 +4,23 @@
   args:
     creates: "{{ ansible_env.HOME }}/.local/bin/mise"
 
+- name: Ensure mise config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/mise"
+    state: directory
+    mode: "0755"
+
+- name: Deploy mise global config
+  ansible.builtin.copy:
+    src: mise_config.toml
+    dest: "{{ ansible_env.HOME }}/.config/mise/config.toml"
+    mode: "0644"
+
+- name: Install mise runtimes
+  ansible.builtin.command:
+    cmd: "{{ ansible_env.HOME }}/.local/bin/mise install"
+  changed_when: false
+
 - name: Install Docker GPG key
   ansible.builtin.shell:
     cmd: curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
