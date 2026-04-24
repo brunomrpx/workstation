@@ -65,6 +65,18 @@
     update_cache: true
   become: true
 
+- name: Ensure VSCode user config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/Code/User"
+    state: directory
+    mode: "0755"
+
+- name: Deploy VSCode settings
+  ansible.builtin.copy:
+    src: vscode_settings.json
+    dest: "{{ ansible_env.HOME }}/.config/Code/User/settings.json"
+    mode: "0644"
+
 - name: Get installed VSCode extensions
   ansible.builtin.command:
     cmd: code --list-extensions
