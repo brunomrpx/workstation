@@ -21,6 +21,11 @@
     cmd: "{{ ansible_env.HOME }}/.local/bin/mise install"
   changed_when: false
 
+- name: Install uv (Python package manager)
+  ansible.builtin.shell:
+    cmd: curl -fsSL https://astral.sh/uv/install.sh | sh
+    creates: "{{ ansible_env.HOME }}/.local/bin/uv"
+
 - name: Install Docker GPG key
   ansible.builtin.shell:
     cmd: curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
