@@ -32,6 +32,11 @@
         cmd: gsettings set org.gnome.shell favorite-apps "['brave-browser.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop']"
       changed_when: false
 
+    - name: Set touchpad click method to two-finger right-click
+      ansible.builtin.command:
+        cmd: gsettings set org.gnome.desktop.peripherals.touchpad click-method 'fingers'
+      changed_when: false
+
     - name: Set Brave as default browser
       ansible.builtin.command:
         cmd: xdg-settings set default-web-browser brave-browser.desktop
