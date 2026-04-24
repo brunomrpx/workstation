@@ -1,0 +1,38 @@
+- name: Apply GNOME settings
+  environment:
+    DBUS_SESSION_BUS_ADDRESS: "{{ ansible_env.DBUS_SESSION_BUS_ADDRESS | default('unix:path=/run/user/' + ansible_user_uid | string + '/bus') }}"
+  block:
+    - name: Set dark color scheme
+      ansible.builtin.command:
+        cmd: gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+      changed_when: false
+
+    - name: Set dock position to bottom
+      ansible.builtin.command:
+        cmd: gsettings set org.gnome.shell.extensions.dash-to-dock dock-position 'BOTTOM'
+      changed_when: false
+
+    - name: Disable dock fixed mode
+      ansible.builtin.command:
+        cmd: gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed false
+      changed_when: false
+
+    - name: Enable dock autohide
+      ansible.builtin.command:
+        cmd: gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
+      changed_when: false
+
+    - name: Center dock
+      ansible.builtin.command:
+        cmd: gsettings set org.gnome.shell.extensions.dash-to-dock extend-height false
+      changed_when: false
+
+    - name: Set dock favorite apps
+      ansible.builtin.command:
+        cmd: gsettings set org.gnome.shell favorite-apps "['brave-browser.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop']"
+      changed_when: false
+
+    - name: Set Brave as default browser
+      ansible.builtin.command:
+        cmd: xdg-settings set default-web-browser brave-browser.desktop
+      changed_when: false

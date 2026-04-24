@@ -8,4 +8,12 @@ apt_packages:
   - git
   - gnupg
   - unzip
+  - xdg-utils
   - zsh
+
+vscode_extensions:
+  - anthropic.claude-code
+
+# Chrome Web Store extension IDs — force-installed via Brave managed policy
+brave_extension_ids:
+  - nngceckbapebfimnlniiiahkandclblb  # Bitwarden

@@ -10,3 +10,5 @@
       tags: [dev]
     - role: apps
       tags: [apps]
+    - role: gnome
+      tags: [gnome]
