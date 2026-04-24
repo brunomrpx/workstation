@@ -13,6 +13,9 @@ apt_packages:
 
 vscode_extensions:
   - anthropic.claude-code
+  - eamodio.gitlens
+  - ms-python.python
+  - golang.go
 
 # Chrome Web Store extension IDs — force-installed via Brave managed policy
 brave_extension_ids:
