@@ -1,7 +1,7 @@
 {
   "editor.minimap.enabled": false,
   "claudeCode.preferredLocation": "panel",
-  "claudeCode.useTerminal": false,
+  "claudeCode.useTerminal": true,
   "terminal.integrated.mouseWheelScrollSensitivity": 3,
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4.1"
