@@ -15,7 +15,7 @@ Target: Ubuntu / Debian-based.
 
 ```bash
 sudo apt install -y git
-git clone <repo-url> ~/Projects/workstation
+git clone https://github.com/brunomrpx/workstation.git ~/Projects/workstation
 cd ~/Projects/workstation
 ./bootstrap.sh
 ```
