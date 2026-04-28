@@ -138,6 +138,46 @@
     dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.toml"
     mode: "0644"
 
+- name: Ensure tmux config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/tmux"
+    state: directory
+    mode: "0755"
+
+- name: Deploy tmux config
+  ansible.builtin.copy:
+    src: tmux.conf
+    dest: "{{ ansible_env.HOME }}/.config/tmux/tmux.conf"
+    mode: "0644"
+
+- name: Install Neovim
+  ansible.builtin.shell:
+    cmd: |
+      curl -fsSL https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz \
+        -o /tmp/nvim-linux-x86_64.tar.gz && \
+      tar -C /opt -xzf /tmp/nvim-linux-x86_64.tar.gz && \
+      ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim && \
+      rm /tmp/nvim-linux-x86_64.tar.gz
+    creates: /usr/local/bin/nvim
+  become: true
+
+- name: Ensure nvim config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/nvim"
+    state: directory
+    mode: "0755"
+
+- name: Deploy nvim config
+  ansible.builtin.copy:
+    src: nvim/
+    dest: "{{ ansible_env.HOME }}/.config/nvim/"
+    mode: "0644"
+
+- name: Install nvim plugins
+  ansible.builtin.command:
+    cmd: nvim --headless "+Lazy! sync" +qa
+  changed_when: false
+
 - name: Install Claude Code CLI
   ansible.builtin.shell:
     cmd: curl -fsSL https://claude.ai/install.sh | bash

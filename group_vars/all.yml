@@ -11,6 +11,9 @@ apt_packages:
   - xdg-utils
   - zsh
   - alacritty
+  - tmux
+  - ripgrep
+  - fd-find
 
 vscode_extensions:
   - anthropic.claude-code
