@@ -110,6 +110,34 @@
     mode: "0644"
   become: true
 
+- name: Ensure NerdFonts directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/share/fonts/NerdFonts"
+    state: directory
+    mode: "0755"
+
+- name: Install JetBrainsMono Nerd Font
+  ansible.builtin.shell:
+    cmd: |
+      curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip \
+        -o /tmp/JetBrainsMono.zip && \
+      unzip -o /tmp/JetBrainsMono.zip -d {{ ansible_env.HOME }}/.local/share/fonts/NerdFonts && \
+      rm /tmp/JetBrainsMono.zip && \
+      fc-cache -f
+    creates: "{{ ansible_env.HOME }}/.local/share/fonts/NerdFonts/JetBrainsMonoNerdFont-Regular.ttf"
+
+- name: Ensure Alacritty config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/alacritty"
+    state: directory
+    mode: "0755"
+
+- name: Deploy Alacritty config
+  ansible.builtin.copy:
+    src: alacritty.toml
+    dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.toml"
+    mode: "0644"
+
 - name: Install Claude Code CLI
   ansible.builtin.shell:
     cmd: curl -fsSL https://claude.ai/install.sh | bash
