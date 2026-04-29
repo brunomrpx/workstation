@@ -17,6 +17,12 @@
     state: directory
     mode: "0755"
 
+- name: Install Zinit
+  ansible.builtin.git:
+    repo: https://github.com/zdharma-continuum/zinit.git
+    dest: "{{ ansible_env.HOME }}/.local/share/zinit/zinit.git"
+    depth: 1
+
 - name: Deploy .zshrc
   ansible.builtin.copy:
     src: zshrc

@@ -11,7 +11,27 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
+# Zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+source "${ZINIT_HOME}/zinit.zsh"
+
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light jeffreytse/zsh-vi-mode
+zinit snippet OMZP::git
+
+# zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#2e2d2c'
+
+# zsh-vi-mode
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+ZVM_VI_EDITOR=nvim
+ZVM_VI_HIGHLIGHT_FOREGROUND=#C5C9C5
+ZVM_VI_HIGHLIGHT_BACKGROUND=#2E2D2C
+ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold
+
 alias ls='ls --color=auto'
+alias vim=nvim
 
 bindkey "\e[1;5C" forward-word
 bindkey "\e[1;5D" backward-word
