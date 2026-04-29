@@ -29,7 +29,19 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = { "vim", "lua", "vimdoc", "html", "css", "python" },
+      ensure_installed = { "vim", "lua", "vimdoc", "html", "css", "python", "markdown", "markdown_inline" },
     },
+  },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    ft = { "markdown" },
+    opts = {},
+  },
+
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
   },
 }
