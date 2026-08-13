@@ -20,7 +20,7 @@ cd ~/Projects/workstation
 ./bootstrap.sh
 ```
 
-After the playbook finishes, authenticate GitHub (generates and uploads an SSH key):
+After the playbook finishes, log out and back in (needed for the default shell change to take effect), then authenticate GitHub (generates and uploads an SSH key):
 
 ```bash
 gh auth login   # GitHub.com → SSH → generate new key
