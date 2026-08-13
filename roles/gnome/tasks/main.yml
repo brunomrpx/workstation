@@ -37,6 +37,11 @@
         cmd: gsettings set org.gnome.desktop.peripherals.touchpad click-method 'fingers'
       changed_when: false
 
+    - name: Disable tap-to-click on touchpad
+      ansible.builtin.command:
+        cmd: gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false
+      changed_when: false
+
     - name: Set Brave as default browser
       ansible.builtin.command:
         cmd: xdg-settings set default-web-browser brave-browser.desktop
