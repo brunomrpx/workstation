@@ -9,7 +9,7 @@ Target: Ubuntu / Debian-based.
 - **base** — essential CLI packages via apt
 - **shell** — zsh + starship, `.zshrc`, `.gitconfig`
 - **dev** — mise + Docker
-- **apps** — VSCode, Brave, GitHub CLI
+- **apps** — Brave, GitHub CLI
 
 ## Bootstrap
 

@@ -1,30 +1,3 @@
-- name: Install Microsoft GPG key
-  ansible.builtin.shell:
-    cmd: curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /etc/apt/keyrings/packages.microsoft.gpg
-    creates: /etc/apt/keyrings/packages.microsoft.gpg
-  become: true
-
-- name: Add VSCode apt repository
-  ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main"
-    state: present
-    filename: vscode
-  become: true
-
-- name: Install VSCode
-  ansible.builtin.apt:
-    name: code
-    state: present
-    update_cache: true
-  become: true
-
-# The VSCode deb package post-install script creates this file, conflicting with vscode.list
-- name: Remove VSCode auto-generated source file
-  ansible.builtin.file:
-    path: /etc/apt/sources.list.d/vscode.sources
-    state: absent
-  become: true
-
 - name: Install Brave GPG key
   ansible.builtin.shell:
     cmd: curl -fsSL https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg -o /etc/apt/keyrings/brave-browser-archive-keyring.gpg
@@ -64,30 +37,6 @@
     state: present
     update_cache: true
   become: true
-
-- name: Ensure VSCode user config directory exists
-  ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.config/Code/User"
-    state: directory
-    mode: "0755"
-
-- name: Deploy VSCode settings
-  ansible.builtin.copy:
-    src: vscode_settings.json
-    dest: "{{ ansible_env.HOME }}/.config/Code/User/settings.json"
-    mode: "0644"
-
-- name: Get installed VSCode extensions
-  ansible.builtin.command:
-    cmd: code --list-extensions
-  register: installed_vscode_extensions
-  changed_when: false
-
-- name: Install VSCode extensions
-  ansible.builtin.command:
-    cmd: code --install-extension {{ item }}
-  loop: "{{ vscode_extensions }}"
-  when: item not in installed_vscode_extensions.stdout_lines
 
 - name: Create Brave managed policies directory
   ansible.builtin.file:
