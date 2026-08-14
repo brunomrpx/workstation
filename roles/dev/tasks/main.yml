@@ -2,29 +2,29 @@
   ansible.builtin.shell: |
     curl -fsSL https://mise.run | sh
   args:
-    creates: "{{ ansible_env.HOME }}/.local/bin/mise"
+    creates: "{{ ansible_facts.env.HOME }}/.local/bin/mise"
 
 - name: Ensure mise config directory exists
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.config/mise"
+    path: "{{ ansible_facts.env.HOME }}/.config/mise"
     state: directory
     mode: "0755"
 
 - name: Deploy mise global config
   ansible.builtin.copy:
     src: mise_config.toml
-    dest: "{{ ansible_env.HOME }}/.config/mise/config.toml"
+    dest: "{{ ansible_facts.env.HOME }}/.config/mise/config.toml"
     mode: "0644"
 
 - name: Install mise runtimes
   ansible.builtin.command:
-    cmd: "{{ ansible_env.HOME }}/.local/bin/mise install"
+    cmd: "{{ ansible_facts.env.HOME }}/.local/bin/mise install"
   changed_when: false
 
 - name: Install uv (Python package manager)
   ansible.builtin.shell:
     cmd: curl -fsSL https://astral.sh/uv/install.sh | sh
-    creates: "{{ ansible_env.HOME }}/.local/bin/uv"
+    creates: "{{ ansible_facts.env.HOME }}/.local/bin/uv"
 
 - name: Install Docker GPG key
   ansible.builtin.shell:
@@ -35,9 +35,9 @@
 - name: Add Docker apt repository
   ansible.builtin.apt_repository:
     repo: >-
-      deb [arch={{ ansible_architecture | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }}
+      deb [arch={{ ansible_facts.architecture | replace('x86_64', 'amd64') | replace('aarch64', 'arm64') }}
       signed-by=/etc/apt/keyrings/docker.asc]
-      https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+      https://download.docker.com/linux/ubuntu {{ ansible_facts.distribution_release }} stable
     state: present
     filename: docker
   become: true
@@ -56,7 +56,7 @@
 
 - name: Add current user to docker group
   ansible.builtin.user:
-    name: "{{ ansible_user_id }}"
+    name: "{{ ansible_facts.user_id }}"
     groups: docker
     append: true
   become: true

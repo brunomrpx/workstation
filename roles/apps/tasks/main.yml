@@ -61,7 +61,7 @@
 
 - name: Ensure NerdFonts directory exists
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.local/share/fonts/NerdFonts"
+    path: "{{ ansible_facts.env.HOME }}/.local/share/fonts/NerdFonts"
     state: directory
     mode: "0755"
 
@@ -70,33 +70,33 @@
     cmd: |
       curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip \
         -o /tmp/JetBrainsMono.zip && \
-      unzip -o /tmp/JetBrainsMono.zip -d {{ ansible_env.HOME }}/.local/share/fonts/NerdFonts && \
+      unzip -o /tmp/JetBrainsMono.zip -d {{ ansible_facts.env.HOME }}/.local/share/fonts/NerdFonts && \
       rm /tmp/JetBrainsMono.zip && \
       fc-cache -f
-    creates: "{{ ansible_env.HOME }}/.local/share/fonts/NerdFonts/JetBrainsMonoNerdFont-Regular.ttf"
+    creates: "{{ ansible_facts.env.HOME }}/.local/share/fonts/NerdFonts/JetBrainsMonoNerdFont-Regular.ttf"
 
 - name: Ensure Alacritty config directory exists
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.config/alacritty"
+    path: "{{ ansible_facts.env.HOME }}/.config/alacritty"
     state: directory
     mode: "0755"
 
 - name: Deploy Alacritty config
   ansible.builtin.copy:
     src: alacritty.toml
-    dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.toml"
+    dest: "{{ ansible_facts.env.HOME }}/.config/alacritty/alacritty.toml"
     mode: "0644"
 
 - name: Ensure tmux config directory exists
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.config/tmux"
+    path: "{{ ansible_facts.env.HOME }}/.config/tmux"
     state: directory
     mode: "0755"
 
 - name: Deploy tmux config
   ansible.builtin.copy:
     src: tmux.conf
-    dest: "{{ ansible_env.HOME }}/.config/tmux/tmux.conf"
+    dest: "{{ ansible_facts.env.HOME }}/.config/tmux/tmux.conf"
     mode: "0644"
 
 - name: Install Neovim
@@ -112,14 +112,14 @@
 
 - name: Ensure nvim config directory exists
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.config/nvim"
+    path: "{{ ansible_facts.env.HOME }}/.config/nvim"
     state: directory
     mode: "0755"
 
 - name: Deploy nvim config
   ansible.builtin.copy:
     src: nvim/
-    dest: "{{ ansible_env.HOME }}/.config/nvim/"
+    dest: "{{ ansible_facts.env.HOME }}/.config/nvim/"
     mode: "0644"
 
 - name: Install nvim plugins
@@ -130,4 +130,4 @@
 - name: Install Claude Code CLI
   ansible.builtin.shell:
     cmd: curl -fsSL https://claude.ai/install.sh | bash
-    creates: "{{ ansible_env.HOME }}/.local/bin/claude"
+    creates: "{{ ansible_facts.env.HOME }}/.local/bin/claude"
