@@ -29,7 +29,7 @@
 
     - name: Set dock favorite apps
       ansible.builtin.command:
-        cmd: gsettings set org.gnome.shell favorite-apps "['brave-browser.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop']"
+        cmd: gsettings set org.gnome.shell favorite-apps "['brave-browser.desktop', 'Alacritty.desktop', 'org.gnome.Nautilus.desktop']"
       changed_when: false
 
     - name: Set touchpad click method to two-finger right-click
