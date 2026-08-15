@@ -15,6 +15,7 @@ apt_packages:
   - ripgrep
   - fd-find
   - xclip
+  - gnome-session-canberra
 
 # Chrome Web Store extension IDs — force-installed via Brave managed policy
 brave_extension_ids:

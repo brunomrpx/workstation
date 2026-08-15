@@ -1,0 +1,37 @@
+{
+  "tui": "fullscreen",
+  "theme": "dark",
+  "editorMode": "vim",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "canberra-gtk-play -i complete 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "notify-send -a 'Claude Code' 'Claude Code — Permission needed' 'Approve or deny the action in the terminal' -i dialog-question; canberra-gtk-play -i dialog-question 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "notify-send -a 'Claude Code' 'Claude Code — Response ready' \"I'm finished and waiting on you\" -i dialog-information; canberra-gtk-play -i complete 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
