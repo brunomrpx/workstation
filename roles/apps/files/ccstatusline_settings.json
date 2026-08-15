@@ -1,0 +1,101 @@
+{
+  "version": 3,
+  "lines": [
+    [
+      {
+        "id": "4575de53-f350-4789-acdc-7280be8b9cc7",
+        "type": "git-branch"
+      },
+      {
+        "id": "86a0e66d-384b-4fa1-b2cf-696b653d4e31",
+        "type": "custom-text",
+        "customText": " ",
+        "color": "white"
+      },
+      {
+        "id": "d6006fff-742e-434a-ae24-95dfbec6769c",
+        "type": "git-changes",
+        "color": "brightMagenta"
+      },
+      {
+        "id": "adf65fb2-de12-48c3-95ed-fb6ae2db10d3",
+        "type": "separator"
+      },
+      {
+        "id": "afcd3b08-6671-4dab-b41c-a0db4b58a591",
+        "type": "git-worktree"
+      }
+    ],
+    [
+      {
+        "id": "1",
+        "type": "model",
+        "color": "cyan",
+        "rawValue": true
+      },
+      {
+        "id": "4",
+        "type": "separator"
+      },
+      {
+        "id": "ba34ac5b-397a-4582-930c-970d1d87a4d7",
+        "type": "context-bar",
+        "metadata": {
+          "display": "slider"
+        }
+      },
+      {
+        "id": "dd4d2976-ca70-438e-bc28-141ad2561892",
+        "type": "separator"
+      },
+      {
+        "id": "d2821be1-b587-4565-8161-5b2972f032b4",
+        "type": "session-usage"
+      },
+      {
+        "id": "84352040-7ee6-4f3f-be4b-ad1936c3e9bf",
+        "type": "custom-text",
+        "customText": " - "
+      },
+      {
+        "id": "df82185e-985f-4d45-b2d8-d8354faf967d",
+        "type": "weekly-usage"
+      },
+      {
+        "id": "14f589cb-48d8-4606-8f9d-b9b27f79596f",
+        "type": "custom-text",
+        "customText": " - "
+      },
+      {
+        "id": "af1ae87e-3bf8-4cfd-8e8a-b096cef6b65e",
+        "type": "block-timer",
+        "metadata": {
+          "display": "time"
+        },
+        "color": "brightBlue"
+      }
+    ],
+    []
+  ],
+  "flexMode": "full",
+  "compactThreshold": 60,
+  "colorLevel": 2,
+  "defaultPaddingSide": "both",
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "gitCacheTtlSeconds": 5,
+  "minimalistMode": false,
+  "powerline": {
+    "enabled": false,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [],
+    "endCaps": [],
+    "autoAlign": false,
+    "continueThemeAcrossLines": false
+  }
+}

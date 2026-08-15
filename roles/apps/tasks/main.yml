@@ -144,3 +144,16 @@
     dest: "{{ ansible_facts.env.HOME }}/.claude/settings.json"
     mode: "0644"
     backup: true
+
+- name: Ensure ccstatusline config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.env.HOME }}/.config/ccstatusline"
+    state: directory
+    mode: "0755"
+
+- name: Deploy ccstatusline settings
+  ansible.builtin.copy:
+    src: ccstatusline_settings.json
+    dest: "{{ ansible_facts.env.HOME }}/.config/ccstatusline/settings.json"
+    mode: "0644"
+    backup: true
